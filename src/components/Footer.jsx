@@ -2,14 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer>
-            <nav>
-                <ul>
-                    <li>
-                        <p>dsafdsa</p>
-                    </li>
-                </ul>
-            </nav>
+        <footer className='text-center'>
             <p>Alkemy challenge</p>
         </footer>
     );

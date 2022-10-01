@@ -31,7 +31,7 @@ const Favoritos = () => {
                   onClick={props.addOrRemoveFromFavs}
                   data-movie-id={oneMovie.id}
                 >
-                  🖤
+                  
                 </button> */}
                 <div className="card-body">
                   <h5 className="card-title">

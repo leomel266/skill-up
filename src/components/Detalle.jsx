@@ -27,7 +27,11 @@ const Detalle = () => {
   return (
     <>
       {!token && <Navigate to="/" />}
-      {!movie && <p>Cargando...</p>}
+      {!movie && (
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      )}
       {movie && (
         <>
           <h2>Titulo:{movie.title}</h2>
@@ -46,7 +50,9 @@ const Detalle = () => {
               <h5>Rating: {movie.vote_average}</h5>
               <h5>Generos:</h5>
               <ul>
-                {movie.genres.map(oneGenre =><li key={oneGenre.id}>{oneGenre.name}</li>)}
+                {movie.genres.map((oneGenre) => (
+                  <li key={oneGenre.id}>{oneGenre.name}</li>
+                ))}
               </ul>
             </div>
           </div>

@@ -54,9 +54,9 @@ function App() {
       <div className="container mt-3">
         <Routes>
           <Route exact path="/" element={<Login />} />
-          <Route path="/listado" element={(props)=><Listado {...props} addOrRemoveFromFavs={this.state.addOrRemoveFromFavs}/>} exact={true} />
+          <Route path="/listado" element={<Listado/>} exact={true} />
           <Route path="/Detalle" element={<Detalle />} />
-          <Route path="/resultados" element={(props)=><Resultados {...props} addOrRemoveFromFavs={this.state.addOrRemoveFromFavs}/>} exact={true} />
+          <Route path="/resultados" element={<Resultados/>} exact={true} />
           <Route path="/favoritos" element={<Favoritos/>} />
         </Routes>
       </div>
