@@ -20,30 +20,32 @@ const Detalle = () => {
     const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=15bce1a63182b8afc7da09cbe3911477&language=en-US`;
     axios.get(endPoint).then((response) => {
       const movieData = response.data;
-      setMovie(movieData);
+      setTimeout(() => {
+        setMovie(movieData);
+      }, 400);
     });
   }, [movieID]);
 
   return (
     <>
-      {!token && <Navigate to="/" />}
+      {!token && <Navigate to='/' />}
       {!movie && (
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div class='spinner-border' role='status'>
+          <span class='visually-hidden'>Loading...</span>
         </div>
       )}
       {movie && (
         <>
-          <h2>Titulo:{movie.title}</h2>
-          <div className="row">
-            <div className="col-4">
+          <h2 className='text-center'>{movie.title}</h2>
+          <div className='row mt-4'>
+            <div className='col-4'>
               <img
-                alt="moviePoster"
-                className="img-fluid"
+                alt='moviePoster'
+                className='img-fluid'
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               />
             </div>
-            <div className="col-8">
+            <div className='col-8'>
               <h5>Fecha de estreno: {movie.release_date}</h5>
               <h5>Reseña:</h5>
               <p>{movie.overview}</p>

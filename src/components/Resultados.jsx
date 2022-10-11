@@ -2,8 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import swAlert from '@sweetalert/with-react';
-
+import swAlert from "@sweetalert/with-react";
 
 const Resultados = () => {
   let query = new URLSearchParams(window.location.search);
@@ -16,8 +15,8 @@ const Resultados = () => {
       .get(endPoint)
       .then((response) => {
         const movieArray = response.data.results;
-        if(movieArray.length === 0){
-            swAlert(<h5>Tu busqueda no arrojo resultados</h5>)
+        if (movieArray.length === 0) {
+          swAlert(<h5>Tu busqueda no arrojo resultados</h5>);
         }
         setMoviesResults(movieArray);
       })
@@ -26,30 +25,35 @@ const Resultados = () => {
 
   return (
     <>
-    <h2>Buscaste: <em>{keyword}</em></h2>
-    {moviesResults.length === 0 && <h3>No hay resultados</h3>}
-      <div className="row">
+      <h2>
+        Buscaste: <em>{keyword}</em>
+      </h2>
+      {moviesResults.length === 0 && (
+        <div class='spinner-border' role='status'>
+          <span class='visually-hidden'>Loading...</span>
+        </div>
+      )}
+      <div className='row'>
         {/*Estructura base */}
         {moviesResults.map((oneMovie, idx) => {
           return (
-            <div className="col-4" key={idx}>
-              <div className="card">
+            <div className='col-4' key={idx}>
+              <div className='card'>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
-                  className="card-img-top"
-                  alt="dsafas"
+                  className='card-img-top'
+                  alt='dsafas'
                 />
-                <div className="card-body">
-                  <h5 className="card-title">
+                <div className='card-body'>
+                  <h5 className='card-title'>
                     {oneMovie.title.substring(0, 30)}...
                   </h5>
-                  <p className="card-text">
+                  <p className='card-text'>
                     {oneMovie.overview.substring(0, 80)}...
                   </p>
                   <Link
                     to={`/detalle?movieID=${oneMovie.id}`}
-                    className="btn btn-primary"
-                  >
+                    className='btn btn-primary'>
                     View detail
                   </Link>
                 </div>
