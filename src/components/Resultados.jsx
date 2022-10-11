@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import swAlert from "@sweetalert/with-react";
+import swal from "@sweetalert/with-react";
 
 const Resultados = () => {
   let query = new URLSearchParams(window.location.search);
@@ -16,7 +16,7 @@ const Resultados = () => {
       .then((response) => {
         const movieArray = response.data.results;
         if (movieArray.length === 0) {
-          swAlert(<h5>Tu busqueda no arrojo resultados</h5>);
+          swal(<h5>Tu busqueda no arrojo resultados</h5>);
         }
         setMoviesResults(movieArray);
       })

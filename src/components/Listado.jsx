@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import swAlert from "@sweetalert/with-react";
+import swal from "@sweetalert/with-react";
 
 const Listado = (props) => {
   let token = sessionStorage.getItem("token");
@@ -19,7 +19,7 @@ const Listado = (props) => {
         setMovieList(apiData.results);
       })
       .catch((err) => {
-        swAlert(<h2>Hubo errorés, intenta mas tarde</h2>);
+        swal(<h2>Hubo errorés, intenta mas tarde</h2>);
       });
   }, [setMovieList]);
 
@@ -29,8 +29,8 @@ const Listado = (props) => {
       <div className='row'>
         {/*Estructura base */}
         {movieList.length < 0 ? (
-          <div class='spinner-border' role='status'>
-            <span class='visually-hidden'>Loading...</span>
+          <div className='spinner-border' role='status'>
+            <span className='visually-hidden'>Loading...</span>
           </div>
         ) : (
           <>
