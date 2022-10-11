@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import swAlert from "@sweetalert/with-react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const history = useNavigate();
@@ -16,17 +16,17 @@ const Login = () => {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (email === "" || password === "") {
-      swAlert(<h2>Los campos no pueden estar vacios</h2>);
+      toast.error("Los campos no pueden estar vacios.");
       return;
     }
 
     if (email !== "" && !regexEmail.test(email)) {
-      swAlert(<h2>Debes escribir una dirección de correo valida</h2>);
+      toast.error("Debes escribir una direccion de correo valida.");
       return;
     }
 
     if (email !== "challenge@alkemy.org" || password !== "react") {
-      swAlert(<h2>Credenciales invalidas</h2>);
+      toast.error("Credenciales invalidas.");
       return;
     }
     // eslint-disable-next-line no-lone-blocks
@@ -38,8 +38,8 @@ const Login = () => {
 
     axios
       .post("http://challenge-react.alkemy.org", { email, password })
-      .then(response => {
-        swAlert(<h2>Ingresaste correctamente</h2>);
+      .then((response) => {
+        toast.success("Successfully toasted!");
         const tokenRecibido = response.data.token;
         // eslint-disable-next-line no-lone-blocks
         {
@@ -47,28 +47,32 @@ const Login = () => {
             (tokenrecibido) y el segundo argumento es la informacion que quieres guardar en este momento */
         }
         sessionStorage.setItem("token", tokenRecibido);
-        history('/listado');
+        history("/listado");
       });
   };
 
-  let token = sessionStorage.getItem('token');
+  let token = sessionStorage.getItem("token");
 
-  return (  
+  return (
     <>
-    { token && <Navigate to='/listado'/>}
-      <div className="row">
-        <div className="col-6 offset-3">
+      {token && <Navigate to='/listado' />}
+      <div className='row'>
+        <div className='col-6 offset-3'>
           <h2>Formulario de Login</h2>
           <form onSubmit={submitHandler}>
-            <label className="form-label d-block mt-2" />
-            <span>Correo electronico</span><br />
-            <input className="form-control" type="email" name="email" />
+            <label className='form-label d-block mt-2' />
+            <span>Correo electronico</span>
+            <br />
+            <input className='form-control' type='email' name='email' />
             <label />
-            <label className="form-label d-block mt-2" />
-            <span>Contraseña</span><br />
-            <input className="form-control" type="password" name="password" />
+            <label className='form-label d-block mt-2' />
+            <span>Contraseña</span>
+            <br />
+            <input className='form-control' type='password' name='password' />
             <label />
-            <button className="btn btn-success mt-2" type="submit">Ingresar</button>
+            <button className='btn btn-success mt-2' type='submit'>
+              Ingresar
+            </button>
           </form>
         </div>
       </div>

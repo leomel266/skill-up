@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import swal from "@sweetalert/with-react";
+import { toast } from "react-hot-toast";
 
 const Listado = (props) => {
   let token = sessionStorage.getItem("token");
@@ -19,7 +19,7 @@ const Listado = (props) => {
         setMovieList(apiData.results);
       })
       .catch((err) => {
-        swal(<h2>Hubo errorés, intenta mas tarde</h2>);
+        toast.error("This didn't work.");
       });
   }, [setMovieList]);
 

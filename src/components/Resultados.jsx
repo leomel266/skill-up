@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import swal from "@sweetalert/with-react";
+import { toast } from "react-hot-toast";
 
 const Resultados = () => {
   let query = new URLSearchParams(window.location.search);
@@ -16,7 +16,7 @@ const Resultados = () => {
       .then((response) => {
         const movieArray = response.data.results;
         if (movieArray.length === 0) {
-          swal(<h5>Tu busqueda no arrojo resultados</h5>);
+          toast.error("No se encontraron resultados.");
         }
         setMoviesResults(movieArray);
       })
@@ -29,8 +29,8 @@ const Resultados = () => {
         Buscaste: <em>{keyword}</em>
       </h2>
       {moviesResults.length === 0 && (
-        <div class='spinner-border' role='status'>
-          <span class='visually-hidden'>Loading...</span>
+        <div className='spinner-border' role='status'>
+          <span className='visually-hidden'>Loading...</span>
         </div>
       )}
       <div className='row'>
