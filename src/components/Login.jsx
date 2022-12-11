@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     axios
-      .post("https://challenge-react.alkemy.org", { email, password })
+      .post("https://challenge-react.alkemy.org/", { email, password })
       .then((response) => {
         toast.success("Successfully toasted!");
         const tokenRecibido = response.data.token;
